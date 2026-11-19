@@ -96,6 +96,7 @@
     { ticker: "META", name: "Meta" },
     { ticker: "PLTR", name: "Palantir" },
     { ticker: "COIN", name: "Coinbase" },
+    { ticker: "AAPL", name: "Apple" },
   ];
   var TICKER_RE = /^[A-Za-z]{1,5}(\.[A-Za-z]{1,2})?$/;
 
@@ -116,6 +117,11 @@
   }
 
   // ── Bars / Heikin-Ashi ───────────────────────────────────────────
+  // Heikin-Ashi, the doctrine's own construction: HA close =
+  // (O+H+L+C)/4, HA open = (prev HA open + prev HA close)/2 seeded
+  // (O+C)/2, HA high = max(raw high, HA open, HA close), HA low =
+  // min(raw low, HA open, HA close). Temp and entry levels ride the
+  // HA high/low — never the raw extremes.
   function toHa(bars) {
     var out = [];
     for (var i = 0; i < bars.length; i++) {
@@ -123,7 +129,9 @@
       var haC = (b.o + b.h + b.l + b.c) / 4;
       var prev = out[out.length - 1];
       var haO = prev ? (prev.haO + prev.haC) / 2 : (b.o + b.c) / 2;
-      out.push({ t: b.t, o: b.o, h: b.h, l: b.l, c: b.c, v: b.v, haO: haO, haC: haC });
+      var haH = Math.max(b.h, haO, haC);
+      var haL = Math.min(b.l, haO, haC);
+      out.push({ t: b.t, o: b.o, h: b.h, l: b.l, c: b.c, v: b.v, haO: haO, haC: haC, haH: haH, haL: haL });
     }
     return out;
   }
@@ -213,74 +221,87 @@
       signalCode: "0x00", candleTime: null,
     };
   }
-  function makeRead(tf, office, bot, job, bars, price, sierraGate) {
+  function makeRead(tf, office, bot, job, bars, price) {
     if (bars.length < 3) return heldRead(tf, office, bot, job, price);
     var ha = toHa(bars);
     var last = ha[ha.length - 1];
     var prev = ha[ha.length - 2];
     if (!last || !prev) return heldRead(tf, office, bot, job, price);
-    var direction = last.haC >= last.haO ? "GREEN" : "RED";
+    // THE ARMY — price versus candle, never body color alone: at or
+    // above the forming candle's HA close, GREEN; below it, RED. A
+    // green body with price pinned at its bottom reads RED ARMY.
+    var direction = price >= last.haC ? "GREEN" : "RED";
     var body = Math.abs(last.haC - last.haO);
     var prevBody = Math.abs(prev.haC - prev.haO);
     var bodyPct = last.haC !== 0 ? (body / last.haC) * 100 : 0;
-    var aligned = direction === "GREEN" ? price >= last.haO : price <= last.haO;
-    var growing = body >= prevBody;
-    var bodyRatio = prevBody > 0 ? body / prevBody : 1;
-    var prevRaw = bars[bars.length - 2];
-    var lastRaw = bars[bars.length - 1];
-    var pullback = prevRaw
-      ? direction === "GREEN" ? price < prevRaw.c : price > prevRaw.c
-      : false;
-    var pushing = aligned && growing;
-    var mildShrink = !growing && bodyRatio >= 0.65;
-    var hardShrink = !growing && bodyRatio < 0.65;
-    var slowing = hardShrink;
-    var showingSigns = mildShrink;
-    if (sierraGate) {
-      slowing = hardShrink && pullback;
-      showingSigns = mildShrink || (hardShrink && !pullback);
+    // THE RUN — trailing HA candles of the army's own color; when
+    // the forming candle's body color stands against the army, the
+    // run is the forming candle alone.
+    var run = [];
+    for (var i = ha.length - 1; i >= 0; i--) {
+      var rb = ha[i];
+      var col = rb.haC >= rb.haO ? "GREEN" : "RED";
+      if (col !== direction) break;
+      run.unshift(rb);
     }
-    var recent = ha.slice(-6, -1);
-    var avgBody = recent.length > 0
-      ? recent.reduce(function (s, b) { return s + Math.abs(b.haC - b.haO); }, 0) / recent.length
-      : prevBody;
-    var bigMove = avgBody > 0 && body > 1.8 * avgBody && aligned;
-    var bigMoveHeld = false;
-    if (sierraGate && bigMove && lastRaw && prevRaw) {
-      if (lastRaw.h - lastRaw.l < prevRaw.h - prevRaw.l) {
-        bigMove = false;
-        bigMoveHeld = true;
-      }
+    if (run.length === 0) run.push(last);
+    // FRESH GROUND — PUSHING: the newest run candle's HA extreme
+    // beats every earlier run candle's; a run of one measures
+    // against the candle before the run.
+    function extreme(b) { return direction === "GREEN" ? b.haH : b.haL; }
+    function beats(a, b) { return direction === "GREEN" ? a > b : a < b; }
+    var newest = run[run.length - 1] || last;
+    var fresh;
+    if (run.length >= 2) {
+      fresh = run.slice(0, -1).every(function (b) { return beats(extreme(newest), extreme(b)); });
+    } else {
+      var beforeIdx = ha.length - run.length - 1;
+      var before = beforeIdx >= 0 ? ha[beforeIdx] : null;
+      fresh = before ? beats(extreme(newest), extreme(before)) : true;
     }
-    var spreadFig = lastRaw ? lastRaw.h - lastRaw.l : 0;
-    var spreadPct = price > 0 ? (spreadFig / price) * 100 : 0;
-    var state = bigMove ? "BIG MOVE"
-      : pushing ? "PUSHING"
-      : slowing ? "SLOWING"
+    // LITTLER + PULLING BACK — the slowing test (Sierra's two
+    // learned rules, house-wide): latest body littler than the one
+    // before AND its HA close retreating against the army.
+    var littler = false;
+    var pullingBack = false;
+    if (run.length >= 2) {
+      var rLast = run[run.length - 1];
+      var rPrev = run[run.length - 2];
+      var smaller = Math.abs(rLast.haC - rLast.haO) < Math.abs(rPrev.haC - rPrev.haO);
+      pullingBack = direction === "GREEN" ? rLast.haC < rPrev.haC : rLast.haC > rPrev.haC;
+      littler = smaller && pullingBack;
+    }
+    var bodyShrank = body < prevBody;
+    // PUSHING = fresh ground. SLOWING = littler + pulling back + no
+    // fresh ground. SHOWING SIGNS = littler, no fresh ground, the
+    // pullback unconfirmed. No band word stands for a stock spread
+    // (no scale set) — no big-move call; the figure rides as a figure.
+    var slowing = !fresh && littler;
+    var showingSigns = !fresh && !slowing && bodyShrank;
+    var state = slowing ? "SLOWING"
       : showingSigns ? "SHOWING SIGNS OF SLOWING"
-      : "HOLDING";
-    var call = state === "BIG MOVE" ? direction + " ARMY PUSHING — BIG MOVE"
-      : state === "PUSHING" ? direction + " ARMY PUSHING"
+      : "PUSHING";
+    var pushing = state === "PUSHING";
+    var bigMove = false;
+    var bigMoveHeld = false;
+    // THE SPREAD — live price minus the forming candle's HA close.
+    var spreadFig = price - last.haC;
+    var spreadPct = price > 0 ? (spreadFig / price) * 100 : 0;
+    var call = state === "PUSHING" ? direction + " ARMY PUSHING"
       : state === "SLOWING" ? direction + " ARMY SLOWING"
-      : state === "SHOWING SIGNS OF SLOWING" ? direction + " ARMY SHOWING SIGNS OF SLOWING"
-      : direction + " ARMY HOLDING";
-    var note = bigMoveHeld
-      ? "Big-move call held back — the latest candle is littler than the one before (Sierra's learned rule)."
-      : slowing && sierraGate
-        ? "Slowing confirmed: candle shrinking hard and price pulling back (Sierra's gate)."
-        : slowing
-          ? "The forming candle is shrinking hard against the one before — the army is slowing."
-          : showingSigns
-            ? "The forming candle is shrinking against the one before — the army is showing signs of slowing."
-            : pushing
-              ? "Price is riding the forming Heikin-Ashi candle in the army's direction."
-              : "Forming Heikin-Ashi candle holds its color; price has not pushed past it.";
+      : direction + " ARMY SHOWING SIGNS OF SLOWING";
+    var note = slowing
+      ? "Slowing confirmed: the latest candle is littler than the one before, its close is pulling back, and no fresh ground is being made."
+      : showingSigns
+        ? "The latest candle is littler than the one before and no fresh ground is being made — signs of slowing; the pullback has not confirmed it yet."
+        : "Fresh ground: the forming candle's extreme is extending the run, price riding the army's side of the candle.";
+    var aligned = direction === "GREEN" ? price >= last.haO : price <= last.haO;
     var bits = 0;
     if (direction === "GREEN") bits |= 1;
     if (pushing) bits |= 2;
     if (slowing) bits |= 4;
     if (bigMove) bits |= 8;
-    if (pullback) bits |= 16;
+    if (pullingBack) bits |= 16;
     if (aligned) bits |= 32;
     if (showingSigns) bits |= 64;
     return {
@@ -300,8 +321,10 @@
     var prev = ha[ha.length - 2];
     if (!last || !prev) return null;
     var light = last.haC >= last.haO ? "GREEN" : "RED";
-    var level = kind === "bottom" ? last.l : last.h;
-    var fresh = kind === "bottom" ? last.l < prev.l : last.h > prev.h;
+    // The level rides the forming candle's HA extreme — HA low for
+    // a bottom, HA high for a top — never the raw bar's extreme.
+    var level = kind === "bottom" ? last.haL : last.haH;
+    var fresh = kind === "bottom" ? last.haL < prev.haL : last.haH > prev.haH;
     var call = kind === "bottom"
       ? fresh ? "TEMP BOTTOM — FRESH EXTENSION" : "TEMP BOTTOM LEVEL RIDING THE CANDLE"
       : fresh ? "TEMP TOP — FRESH EXTENSION" : "TEMP TOP LEVEL RIDING THE CANDLE";
@@ -567,7 +590,7 @@
           })
           .catch(function () { /* no browser door left — board stands held/stale */ });
       });
-    var p2 = cached("yahoo:30m:" + ticker, function () { return yahooBars(ticker, "30m", "3mo"); })
+    var p2 = cached("yahoo:30m:" + ticker, function () { return yahooBars(ticker, "30m", "60d"); })
       .then(function (bars) {
         bars30 = bars;
         sources.add("Yahoo Finance chart API (fallback)");
@@ -606,7 +629,8 @@
       var todayBars = bars1m.filter(function (b) { return etDateKey(new Date(b.t * 1000)) === latestKey; });
       var dayHigh = quote.high != null ? quote.high : (todayBars.length ? Math.max.apply(null, todayBars.map(function (b) { return b.h; })) : null);
       var dayLow = quote.low != null ? quote.low : (todayBars.length ? Math.min.apply(null, todayBars.map(function (b) { return b.l; })) : null);
-      var daySpread = dayHigh != null && dayLow != null ? dayHigh - dayLow : null;
+      // (Day high/low stand as the session range; the headline
+      // spread is computed off the forming DAY candle below.)
       var change = quote.change != null ? quote.change : (prevClose != null && price ? price - prevClose : null);
       var changePct = quote.changePct != null ? quote.changePct : (change != null && prevClose ? (change / prevClose) * 100 : null);
 
@@ -676,9 +700,9 @@
       var bars4h = aggregateMinutes(bars30.length ? bars30 : bars1m, 240);
       var bars6h = aggregateMinutes(bars30.length ? bars30 : bars1m, 360);
 
-      var sierra = makeRead("3M", "Sierra's Office — Three-Minute Reader", "Sierra", "Three-minute reader", bars3m, price, true);
-      var mina = makeRead("1M", "Mina's Office — One-Minute Reader", "Mina", "One-minute reader", bars1m, price, false);
-      var sable = makeRead("6H", "Sable's Office — Spread Watch", "Sable", "Six-hour spread watch", bars6h, price, false);
+      var sierra = makeRead("3M", "Sierra's Office — Three-Minute Reader", "Sierra", "Three-minute reader", bars3m, price);
+      var mina = makeRead("1M", "Mina's Office — One-Minute Reader", "Mina", "One-minute reader", bars1m, price);
+      var sable = makeRead("6H", "Sable's Office — Spread Watch", "Sable", "Six-hour spread watch", bars6h, price);
       var tfDefs = [
         { tf: "1H", office: "1H Reader Office", bot: "1H Reader", job: "One-hour timeframe reader", bars: bars1h },
         { tf: "4H", office: "4H Reader Office", bot: "4H Reader", job: "Four-hour timeframe reader", bars: bars4h },
@@ -687,7 +711,7 @@
         { tf: "WEEK", office: "WEEK Reader Office", bot: "WEEK Reader", job: "Week timeframe reader", bars: weeklyBars },
         { tf: "MONTH", office: "MONTH Reader Office", bot: "MONTH Reader", job: "Month timeframe reader", bars: monthlyBars },
       ];
-      var tfReads = tfDefs.map(function (d) { return makeRead(d.tf, d.office, d.bot, d.job, d.bars, price, false); });
+      var tfReads = tfDefs.map(function (d) { return makeRead(d.tf, d.office, d.bot, d.job, d.bars, price); });
       var reads = [mina, sierra].concat(tfReads);
       var byTf = new Map(reads.map(function (r) { return [r.tf, r]; }));
 
@@ -729,17 +753,20 @@
       frameDefs.forEach(function (fd, idx) {
         var lastBar = fd.bars[fd.bars.length - 1];
         if (!lastBar) return;
+        var fdHa = toHa(fd.bars);
+        var lastHa = fdHa[fdHa.length - 1];
+        if (!lastHa) return;
         var rank = idx + 1;
         var rankWord = rankWords[idx] || "NEXT";
         levels.push({
           id: fd.frame + "-BOTTOM", frame: fd.frame, side: "BOTTOM", rank: rank,
           label: fd.frame + " BOTTOM — " + rankWord + " ENTRY LONG",
-          meaning: "enter long · exit short", price: lastBar.l, candleKey: fd.candleKey,
+          meaning: "enter long · exit short", price: lastHa.haL, candleKey: fd.candleKey,
         });
         levels.push({
           id: fd.frame + "-TOP", frame: fd.frame, side: "TOP", rank: rank,
           label: fd.frame + " TOP — " + rankWord + " ENTRY SHORT",
-          meaning: "enter short · exit long", price: lastBar.h, candleKey: fd.candleKey,
+          meaning: "enter short · exit long", price: lastHa.haH, candleKey: fd.candleKey,
         });
       });
       var store = hitStore();
@@ -794,6 +821,12 @@
       var feedName = quote.name && quote.name.toUpperCase() !== ticker ? quote.name : null;
       var company = listName && listName.toUpperCase() !== ticker ? listName : (feedName || listName || ticker);
 
+      // The headline spread is the DAY frame's own figure: live
+      // price minus the forming DAY candle's HA close.
+      var dayHaSeries = toHa(dailyBars);
+      var dayHaLast = dayHaSeries[dayHaSeries.length - 1];
+      var headlineSpread = dayHaLast ? price - dayHaLast.haC : null;
+
       return {
         ok: true,
         stale: false,
@@ -806,8 +839,8 @@
         dayHigh: dayHigh,
         dayLow: dayLow,
         prevClose: prevClose,
-        spreadFig: daySpread,
-        spreadPct: daySpread != null && price > 0 ? (daySpread / price) * 100 : null,
+        spreadFig: headlineSpread,
+        spreadPct: headlineSpread != null && price > 0 ? (headlineSpread / price) * 100 : null,
         marketOpen: open,
         marketLabel: open ? "MARKET OPEN" : "MARKET CLOSED",
         frozenNote: open ? null : "Board down — market closed. Reads stand on the last session; after the close you can't do nothing.",
@@ -1342,7 +1375,7 @@
     // this copy stands on Yahoo alone and holds if it stays silent.)
     return Promise.all([
       orEmpty(cached("yahoo:1m:" + meta.pair, function () { return yahooBars(meta.pair, "1m", "5d"); })),
-      orEmpty(cached("yahoo:30m:" + meta.pair, function () { return yahooBars(meta.pair, "30m", "3mo"); })),
+      orEmpty(cached("yahoo:30m:" + meta.pair, function () { return yahooBars(meta.pair, "30m", "60d"); })),
       orEmpty(cached("yahoo:1d:" + meta.pair, function () { return yahooBars(meta.pair, "1d", "10y"); })),
       orEmpty(cached("yahoo:1wk:" + meta.pair, function () { return yahooBars(meta.pair, "1wk", "5y"); })),
       orEmpty(cached("yahoo:1mo:" + meta.pair, function () { return yahooBars(meta.pair, "1mo", "10y"); })),
@@ -1430,19 +1463,19 @@
       var bars6h = aggregateMinutes(bars30.length ? bars30 : bars1m, 360);
 
       // Sierra's room — the 3-minute survey, her gate and all.
-      var sierra = makeRead("3M", "Sierra's Office — Three-Minute Reader", "Sierra", "Three-minute reader", bars3m, price, true);
+      var sierra = makeRead("3M", "Sierra's Office — Three-Minute Reader", "Sierra", "Three-minute reader", bars3m, price);
 
       // The timeframe cadence she also carries — each frame read off
       // its own forming candle, in her reading order: 1H · 4H · 6H ·
       // DAY · WEEK · MONTH.
-      var sable = makeRead("6H", "Sable's Office — Spread Watch", "Sable", "Six-hour spread watch", bars6h, price, false);
+      var sable = makeRead("6H", "Sable's Office — Spread Watch", "Sable", "Six-hour spread watch", bars6h, price);
       var frames = [
-        makeRead("1H", "1H Reader Office", "1H Reader", "One-hour timeframe reader", bars1h, price, false),
-        makeRead("4H", "4H Reader Office", "4H Reader", "Four-hour timeframe reader", bars4h, price, false),
+        makeRead("1H", "1H Reader Office", "1H Reader", "One-hour timeframe reader", bars1h, price),
+        makeRead("4H", "4H Reader Office", "4H Reader", "Four-hour timeframe reader", bars4h, price),
         sable,
-        makeRead("DAY", "DAY Reader Office", "DAY Reader", "Day timeframe reader", dailyBars, price, false),
-        makeRead("WEEK", "WEEK Reader Office", "WEEK Reader", "Week timeframe reader", weeklyBars, price, false),
-        makeRead("MONTH", "MONTH Reader Office", "MONTH Reader", "Month timeframe reader", monthlyBars, price, false),
+        makeRead("DAY", "DAY Reader Office", "DAY Reader", "Day timeframe reader", dailyBars, price),
+        makeRead("WEEK", "WEEK Reader Office", "WEEK Reader", "Week timeframe reader", weeklyBars, price),
+        makeRead("MONTH", "MONTH Reader Office", "MONTH Reader", "Month timeframe reader", monthlyBars, price),
       ];
 
       // SABLE'S ROOM RELAY — her spread line is read OUT OF SABLE'S
