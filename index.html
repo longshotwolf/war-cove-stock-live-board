@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <meta name="color-scheme" content="light dark" />
+    <!-- Empty inline icon: stops the browser fetching /favicon.ico, which
+         lives outside the space's routes and fails auth. -->
+    <link rel="icon" href="data:," />
+    <title>Master Stock Board — War Cove Live</title>
+    
+  <link rel="stylesheet" crossorigin href="./assets/index-7grnhj32.css"><style>html,body{background:#0b0e13}</style>
+    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+    <meta name="theme-color" content="#0b0e13">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Master Stocks">
+    <link rel="stylesheet" href="./master-treatment.css">
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('./sw.js').catch(function () {});
+        });
+      }
+    </script>
+    <script src="./seed.js"></script>
+    <script src="./local-actions.js"></script>
+    <script type="module" crossorigin src="./assets/index-01hks2qw.js"></script>
+    <script src="./master-treatment.js"></script></head>
+  <body>
+    <header id="msbd-masthead">
+      <p class="msbd-eyebrow">WAR COVE LIVE</p>
+      <p class="msbd-name">Master Stock Board</p>
+    </header>
+    <div
+      data-generated-space-root=""
+      data-generated-space-slug="day-brief-stock-board"
+    ></div>
+  <!-- WC-LINK-COUNTER key=stock-live-board fp=wcfp-4037e8c5e0 -->
+<script>
+(function(){try{
+var KEY="stock-live-board",FP="wcfp-4037e8c5e0",DOC="https://longshotwolf.github.io/war-cove-newsroom-preview/simli-endpoint.json";
+var id=null;try{id=window.sessionStorage.getItem("wc-link-id");if(!id){id="w"+Math.random().toString(36).slice(2)+Date.now().toString(36);window.sessionStorage.setItem("wc-link-id",id);}}catch(e){id="w"+Math.random().toString(36).slice(2)+Date.now().toString(36);}
+var ep=null,viewed=false,fails=0;
+function send(path){if(!ep)return;try{fetch(ep+path+"?page="+encodeURIComponent(KEY)+"&fp="+encodeURIComponent(FP)+"&id="+encodeURIComponent(id),{mode:"cors",cache:"no-store",keepalive:true}).then(function(r){if(!r.ok)throw 0;fails=0;if(path==="/view")viewed=true;}).catch(function(){fails++;if(fails>=2){ep=null;discover();}});}catch(e){}}
+function discover(){try{fetch(DOC+"?cb="+Date.now(),{mode:"cors",cache:"no-store"}).then(function(r){return r.json();}).then(function(j){if(j&&j.counter){ep=j.counter;if(!viewed)send("/view");}}).catch(function(){});}catch(e){}}
+discover();
+setInterval(function(){if(ep){if(!viewed)send("/view");else send("/beat");}else discover();},20000);
+}catch(e){}})();
+</script>
+<!-- /WC-LINK-COUNTER -->
+</body>
+</html>

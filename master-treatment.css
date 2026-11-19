@@ -1,0 +1,164 @@
+/* ════════════════════════════════════════════════════════════════
+   MASTER STOCK BOARD — the master treatment layer.
+   The crypto master's build, carried onto the stock board's own
+   bundle: feather manuscript on the headline/name writing, the
+   lean rule (descriptive prose off the masterpiece), the candle
+   faces, and the Terra/Vega hologram radars. Data, numbers and
+   reads keep the board's readable face throughout.
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── THE MASTHEAD — the board's name, in the feather hand ─────── */
+#msbd-masthead {
+  text-align: center;
+  padding: 14px 12px 2px;
+  background: var(--bg, #0b0e13);
+}
+#msbd-masthead .msbd-eyebrow {
+  font-family: "Oswald", "Arial Narrow", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  color: #94a3b8;
+  margin: 0;
+}
+#msbd-masthead .msbd-name {
+  font-family: "Great Vibes", cursive;
+  font-weight: 400;
+  font-size: 46px;
+  line-height: 1.15;
+  color: #d4af37;
+  margin: 0;
+  text-shadow: 0 0 22px rgba(212, 175, 55, 0.25);
+}
+
+/* ── FEATHER MANUSCRIPT — headline & name writing ─────────────── */
+/* Office names and section headlines render in the quill hand;
+   letter-spacing closes and forced uppercase comes off so the
+   hand joins like a manuscript. The proof scroll keeps its own
+   Cinzel face — it is a record, not board writing. */
+h2:not(.proof-display),
+h3:not(.proof-display),
+.msbd-feather {
+  font-family: "Great Vibes", cursive !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+.proof-scroll h2,
+.proof-scroll h3 {
+  font-family: "Cinzel", serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+}
+/* Feather runs smaller than the board's display face at the same
+   size — lift the headline sizes a step so the names stand. */
+h2:not(.proof-display) { font-size: 1.65em !important; }
+h3:not(.proof-display) { font-size: 1.5em !important; }
+section[aria-label="Treasury — the money till"] > div:first-child > p:first-child {
+  font-family: "Great Vibes", cursive !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  font-size: 28px !important;
+}
+
+/* ── THE LEAN RULE — descriptive prose off the masterpiece ────── */
+[aria-label="The Recipe — board doctrine"] { display: none !important; }
+.msbd-lean { display: none !important; }
+
+/* ── THE CANDLE FACES — 120px instrument dials ────────────────── */
+.msbd-shellrow { display: flex; gap: 10px; align-items: flex-start; }
+.msbd-shellbody { flex: 1 1 auto; min-width: 0; }
+.msbd-dial {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  flex: 0 0 auto;
+  border-radius: 9999px;
+  background: rgba(4, 18, 28, 0.95);
+  overflow: hidden;
+}
+.msbd-dial .msbd-dial-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 13%;
+}
+.msbd-dial .msbd-d-ticker {
+  font-family: "Oswald", "Arial Narrow", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #f0f9ff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.95);
+  line-height: 1.1;
+}
+.msbd-dial .msbd-d-price {
+  font-size: 12px;
+  font-weight: 700;
+  color: #f8fafc;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.95);
+  line-height: 1.25;
+}
+.msbd-dial .msbd-d-spread {
+  font-size: 9px;
+  font-weight: 600;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.95);
+  line-height: 1.2;
+}
+.msbd-dial .msbd-d-call {
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.95);
+}
+.msbd-dial .msbd-d-held {
+  font-family: "Oswald", "Arial Narrow", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #fbbf24;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.95);
+}
+/* Sierra's radar sweep + Mina's stopwatch hand */
+@keyframes msbd-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes msbd-spin-rev { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+.msbd-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  animation: msbd-spin 4s linear infinite;
+}
+.msbd-sweep-blue { background: conic-gradient(from 0deg, rgba(56, 189, 248, 0.38), rgba(56, 189, 248, 0) 70deg); }
+.msbd-watch-hand {
+  position: absolute;
+  inset: 0;
+  animation: msbd-spin 60s linear infinite;
+}
+
+/* ── TERRA / VEGA RADARS — inside the standing temp windows ───── */
+.msbd-radar-cell { position: relative !important; overflow: hidden !important; }
+.msbd-radar-cell > * { position: relative; z-index: 1; }
+.msbd-radar-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.msbd-radar-sweep {
+  position: absolute;
+  inset: -20%;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+.msbd-radar-sweep.terra { background: conic-gradient(from 0deg, rgba(52, 211, 153, 0.30), rgba(52, 211, 153, 0) 80deg); animation: msbd-spin 4.5s linear infinite; }
+.msbd-radar-sweep.vega { background: conic-gradient(from 0deg, rgba(251, 113, 133, 0.30), rgba(251, 113, 133, 0) 80deg); animation: msbd-spin-rev 4.5s linear infinite; }
+.msbd-radar-hit .msbd-radar-ring { stroke-opacity: 0.95 !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .msbd-sweep, .msbd-watch-hand, .msbd-radar-sweep { animation: none !important; }
+}
