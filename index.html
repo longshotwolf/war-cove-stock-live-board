@@ -1702,7 +1702,14 @@ async function loadBoard(t){
     if (b && b.ticker){
       boards[b.ticker] = b;
       paintBoard(b);
-      statusEl.textContent = "● LIVE — UPDATED " + nycTime.format(new Date()) + " NYC";
+      // LIVE only when a real read landed (a fresh or stale-cache
+      // board with a price). An error board — price null, every read
+      // held — never earns the LIVE line.
+      if (b.price != null){
+        statusEl.textContent = "● LIVE — UPDATED " + nycTime.format(new Date()) + " NYC";
+      } else {
+        statusEl.textContent = "RECONNECTING TO THE FEED…";
+      }
     }
   } catch (e){
     statusEl.textContent = "RECONNECTING TO THE FEED…";
