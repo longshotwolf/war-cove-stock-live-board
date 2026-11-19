@@ -915,8 +915,280 @@ h2{line-height:22px;}
   </section>
 
   <section>
-    <h2>THE READERS' PROOF PAGE</h2>
-    <div class="rows" id="rd-rows"></div>
+    <h2>THE STOCK SCROLL — THE READERS' PROOF PAGE</h2>
+    <style>
+      .ssstats{text-align:center;font-size:12.5px;letter-spacing:.14em;color:#7fd8ab;margin-bottom:10px;}
+      .sswin{height:430px;overflow:hidden;border:1.5px solid var(--line);border-radius:12px;background:#f6ead0;box-shadow:inset 0 0 60px rgba(120,72,20,.35),0 0 14px rgba(57,255,176,.25);}
+      .sstrack{will-change:transform;padding:6px 18px;}
+      .ssrow{padding:9px 2px;border-bottom:1px solid rgba(90,58,16,.25);}
+      .sswho{font-size:13px;color:#5b4020;letter-spacing:.04em;}
+      .sswho b{color:#2e1f0f;}
+      .sscall{font-size:15.5px;font-weight:700;margin-top:2px;}
+      .sscall.g{color:#175c2a;}
+      .sscall.r{color:#8c1d10;}
+      .sscall.n{color:#2a1a08;}
+      .ssaudit{font-size:12.5px;color:#7a5c2e;font-style:italic;margin-top:2px;}
+    </style>
+    <div class="ssstats">159 GRADED · 93 CORRECT · 66 MISSES · 81 OPEN · AS OF Nov 19, 4:04:59 PM NYC</div>
+    <div class="sswin" id="stock-scroll-win">
+      <div class="sstrack" id="stock-scroll-track">
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:58:40 AM NYC</div><div class="sscall r">COIN 1M · RED ARMY SHOWING SIGNS OF SLOWING · $113.23 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:58:40 AM NYC</div><div class="sscall r">COIN 3M · RED ARMY SHOWING SIGNS OF SLOWING · $113.23 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:58:40 AM NYC</div><div class="sscall r">COIN WEEK · RED ARMY SLOWING · $113.23 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:58:40 AM NYC</div><div class="sscall r">COIN MONTH · RED ARMY SLOWING · $113.23 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 19, 9:58:29 AM NYC</div><div class="sscall n">COIN DAY · DAY BOTTOM — THIRD ENTRY LONG — HIT · $113.23 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:58:38 AM NYC</div><div class="sscall g">PLTR 1M · GREEN ARMY PUSHING · $164.92 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:58:38 AM NYC</div><div class="sscall r">PLTR 3M · RED ARMY SHOWING SIGNS OF SLOWING · $164.92 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:58:38 AM NYC</div><div class="sscall r">PLTR WEEK · RED ARMY SLOWING · $164.92 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:58:38 AM NYC</div><div class="sscall r">PLTR MONTH · RED ARMY SLOWING · $164.92 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:58:17 AM NYC</div><div class="sscall g">AAPL 1M · GREEN ARMY SLOWING · $348.60 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:58:17 AM NYC</div><div class="sscall r">AAPL DAY · RED ARMY PUSHING · $348.60 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:58:17 AM NYC</div><div class="sscall g">AAPL WEEK · GREEN ARMY SLOWING · $348.60 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:58:17 AM NYC</div><div class="sscall g">AAPL MONTH · GREEN ARMY SHOWING SIGNS OF SLOWING · $348.60 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:58:16 AM NYC</div><div class="sscall r">META 1M · RED ARMY PUSHING · $625.46 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:58:16 AM NYC</div><div class="sscall r">META 3M · RED ARMY HOLDING · $625.46 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:58:16 AM NYC</div><div class="sscall g">META DAY · GREEN ARMY SLOWING · $625.46 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:58:16 AM NYC</div><div class="sscall r">META WEEK · RED ARMY PUSHING · $625.46 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:58:16 AM NYC</div><div class="sscall r">META MONTH · RED ARMY SLOWING · $625.46 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:45:18 AM NYC</div><div class="sscall g">AAPL 1M · GREEN ARMY SHOWING SIGNS OF SLOWING · $349.52 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:45:18 AM NYC</div><div class="sscall r">AAPL 3M · RED ARMY SLOWING · $349.52 → $349.56 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>1H Reader</b> — Nov 19, 9:45:18 AM NYC</div><div class="sscall r">AAPL 1H · RED ARMY SLOWING · $349.52 → $353.80 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>4H Reader</b> — Nov 19, 9:45:18 AM NYC</div><div class="sscall g">AAPL 4H · GREEN ARMY SLOWING · $349.52 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>6H Reader</b> — Nov 19, 9:45:18 AM NYC</div><div class="sscall g">AAPL 6H · GREEN ARMY SLOWING · $349.52 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:45:18 AM NYC</div><div class="sscall r">AAPL DAY · RED ARMY PUSHING · $349.52 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:45:18 AM NYC</div><div class="sscall g">AAPL WEEK · GREEN ARMY SLOWING · $349.52 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:45:18 AM NYC</div><div class="sscall g">AAPL MONTH · GREEN ARMY SHOWING SIGNS OF SLOWING · $349.52 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 19, 9:44:59 AM NYC</div><div class="sscall n">AAPL WEEK · WEEK BOTTOM — SECOND ENTRY LONG — HIT · $349.52 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 19, 9:44:59 AM NYC</div><div class="sscall n">AAPL DAY · DAY BOTTOM — THIRD ENTRY LONG — HIT · $349.52 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:45:16 AM NYC</div><div class="sscall g">COIN 1M · GREEN ARMY PUSHING · $115.21 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:45:16 AM NYC</div><div class="sscall g">COIN 3M · GREEN ARMY PUSHING · $115.21 → $114.97 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>1H Reader</b> — Nov 19, 9:45:16 AM NYC</div><div class="sscall g">COIN 1H · GREEN ARMY SLOWING · $115.21 → $114.30 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>4H Reader</b> — Nov 19, 9:45:16 AM NYC</div><div class="sscall g">COIN 4H · GREEN ARMY SLOWING · $115.21 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>6H Reader</b> — Nov 19, 9:45:16 AM NYC</div><div class="sscall g">COIN 6H · GREEN ARMY SLOWING · $115.21 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:45:16 AM NYC</div><div class="sscall r">COIN DAY · RED ARMY SLOWING · $115.21 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:45:16 AM NYC</div><div class="sscall r">COIN WEEK · RED ARMY PUSHING · $115.21 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:45:16 AM NYC</div><div class="sscall r">COIN MONTH · RED ARMY SLOWING · $115.21 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 19, 9:44:58 AM NYC</div><div class="sscall n">COIN DAY · DAY TOP — THIRD ENTRY SHORT — HIT · $115.21 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:45:13 AM NYC</div><div class="sscall r">PLTR 1M · RED ARMY SLOWING · $166.29 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:45:13 AM NYC</div><div class="sscall g">PLTR 3M · GREEN ARMY SLOWING · $166.29 → $165.22 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>1H Reader</b> — Nov 19, 9:45:13 AM NYC</div><div class="sscall g">PLTR 1H · GREEN ARMY SLOWING · $166.29 → $160.29 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>4H Reader</b> — Nov 19, 9:45:13 AM NYC</div><div class="sscall g">PLTR 4H · GREEN ARMY SLOWING · $166.29 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>6H Reader</b> — Nov 19, 9:45:13 AM NYC</div><div class="sscall g">PLTR 6H · GREEN ARMY SLOWING · $166.29 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:45:13 AM NYC</div><div class="sscall g">PLTR DAY · GREEN ARMY SHOWING SIGNS OF SLOWING · $166.29 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:45:13 AM NYC</div><div class="sscall r">PLTR WEEK · RED ARMY SLOWING · $166.29 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:45:13 AM NYC</div><div class="sscall r">PLTR MONTH · RED ARMY SLOWING · $166.29 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:44:42 AM NYC</div><div class="sscall g">GOOGL 1M · GREEN ARMY PUSHING · $292.05 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:44:42 AM NYC</div><div class="sscall g">GOOGL 3M · GREEN ARMY SHOWING SIGNS OF SLOWING · $292.05 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>1H Reader</b> — Nov 19, 9:44:42 AM NYC</div><div class="sscall g">GOOGL 1H · GREEN ARMY SLOWING · $292.05 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>4H Reader</b> — Nov 19, 9:44:42 AM NYC</div><div class="sscall g">GOOGL 4H · GREEN ARMY PUSHING — BIG MOVE · $292.05 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>6H Reader</b> — Nov 19, 9:44:42 AM NYC</div><div class="sscall g">GOOGL 6H · GREEN ARMY PUSHING — BIG MOVE · $292.05 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:44:42 AM NYC</div><div class="sscall g">GOOGL DAY · GREEN ARMY PUSHING · $292.05 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:44:42 AM NYC</div><div class="sscall r">GOOGL WEEK · RED ARMY PUSHING · $292.05 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:44:42 AM NYC</div><div class="sscall r">GOOGL MONTH · RED ARMY PUSHING — BIG MOVE · $292.05 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:44:39 AM NYC</div><div class="sscall g">MSTR 1M · GREEN ARMY SLOWING · $93.26 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:44:39 AM NYC</div><div class="sscall g">MSTR 3M · GREEN ARMY PUSHING · $93.26 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>1H Reader</b> — Nov 19, 9:44:39 AM NYC</div><div class="sscall g">MSTR 1H · GREEN ARMY SLOWING · $93.26 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>4H Reader</b> — Nov 19, 9:44:39 AM NYC</div><div class="sscall g">MSTR 4H · GREEN ARMY SHOWING SIGNS OF SLOWING · $93.26 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>6H Reader</b> — Nov 19, 9:44:39 AM NYC</div><div class="sscall g">MSTR 6H · GREEN ARMY HOLDING · $93.26 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:44:39 AM NYC</div><div class="sscall r">MSTR DAY · RED ARMY SLOWING · $93.26 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:44:39 AM NYC</div><div class="sscall r">MSTR WEEK · RED ARMY PUSHING — BIG MOVE · $93.26 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:44:39 AM NYC</div><div class="sscall r">MSTR MONTH · RED ARMY PUSHING · $93.26 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:44:38 AM NYC</div><div class="sscall g">META 1M · GREEN ARMY SHOWING SIGNS OF SLOWING · $625.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:44:38 AM NYC</div><div class="sscall g">META 3M · GREEN ARMY SHOWING SIGNS OF SLOWING · $625.81 → $626.57 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>1H Reader</b> — Nov 19, 9:44:38 AM NYC</div><div class="sscall g">META 1H · GREEN ARMY SLOWING · $625.81 → $625.00 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>4H Reader</b> — Nov 19, 9:44:38 AM NYC</div><div class="sscall g">META 4H · GREEN ARMY SLOWING · $625.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>6H Reader</b> — Nov 19, 9:44:38 AM NYC</div><div class="sscall g">META 6H · GREEN ARMY SHOWING SIGNS OF SLOWING · $625.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:44:38 AM NYC</div><div class="sscall g">META DAY · GREEN ARMY SLOWING · $625.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:44:38 AM NYC</div><div class="sscall r">META WEEK · RED ARMY PUSHING · $625.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:44:38 AM NYC</div><div class="sscall r">META MONTH · RED ARMY SLOWING · $625.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 19, 9:44:22 AM NYC</div><div class="sscall n">META 6H · 6H BOTTOM — FOURTH ENTRY LONG — HIT · $625.81 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 19, 9:44:22 AM NYC</div><div class="sscall n">META 6H · 6H TOP — FOURTH ENTRY SHORT — HIT · $625.81 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:44:35 AM NYC</div><div class="sscall g">TSLA 1M · GREEN ARMY SLOWING · $390.53 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:44:35 AM NYC</div><div class="sscall g">TSLA 3M · GREEN ARMY SHOWING SIGNS OF SLOWING · $390.53 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>1H Reader</b> — Nov 19, 9:44:35 AM NYC</div><div class="sscall g">TSLA 1H · GREEN ARMY SHOWING SIGNS OF SLOWING · $390.53 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>4H Reader</b> — Nov 19, 9:44:35 AM NYC</div><div class="sscall g">TSLA 4H · GREEN ARMY PUSHING — BIG MOVE · $390.53 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>6H Reader</b> — Nov 19, 9:44:35 AM NYC</div><div class="sscall g">TSLA 6H · GREEN ARMY PUSHING — BIG MOVE · $390.53 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:44:35 AM NYC</div><div class="sscall g">TSLA DAY · GREEN ARMY PUSHING · $390.53 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:44:35 AM NYC</div><div class="sscall g">TSLA WEEK · GREEN ARMY PUSHING · $390.53 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:44:35 AM NYC</div><div class="sscall g">TSLA MONTH · GREEN ARMY SHOWING SIGNS OF SLOWING · $390.53 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 19, 9:44:22 AM NYC</div><div class="sscall n">TSLA 6H · 6H BOTTOM — FOURTH ENTRY LONG — HIT · $390.53 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:44:14 AM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING — BIG MOVE · $157.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:44:14 AM NYC</div><div class="sscall g">NVDA 3M · GREEN ARMY SHOWING SIGNS OF SLOWING · $157.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>1H Reader</b> — Nov 19, 9:44:14 AM NYC</div><div class="sscall g">NVDA 1H · GREEN ARMY SLOWING · $157.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>4H Reader</b> — Nov 19, 9:44:14 AM NYC</div><div class="sscall g">NVDA 4H · GREEN ARMY SLOWING · $157.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>6H Reader</b> — Nov 19, 9:44:14 AM NYC</div><div class="sscall g">NVDA 6H · GREEN ARMY SLOWING · $157.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:44:14 AM NYC</div><div class="sscall r">NVDA DAY · RED ARMY SLOWING · $157.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 19, 9:44:02 AM NYC</div><div class="sscall n">NVDA DAY · DAY TOP — THIRD ENTRY SHORT — HIT · $157.81 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 18, 3:26:39 PM NYC</div><div class="sscall r">NVDA 1M · RED ARMY SHOWING SIGNS OF SLOWING · $150.69 → $150.70 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 18, 3:26:39 PM NYC</div><div class="sscall r">NVDA 3M · RED ARMY SLOWING · $150.69 → $150.75 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 18, 3:26:39 PM NYC</div><div class="sscall r">NVDA DAY · RED ARMY SLOWING · $150.69 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 18, 3:26:25 PM NYC</div><div class="sscall n">NVDA WEEK · WEEK BOTTOM — SECOND ENTRY LONG — HIT · $150.69 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 18, 12:33:51 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY SHOWING SIGNS OF SLOWING · $153.17 → $152.57 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 18, 12:33:51 PM NYC</div><div class="sscall g">NVDA 3M · GREEN ARMY SHOWING SIGNS OF SLOWING · $153.17 → $152.90 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 18, 12:33:51 PM NYC</div><div class="sscall r">NVDA DAY · RED ARMY SLOWING · $153.17 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 18, 9:51:48 AM NYC</div><div class="sscall r">NVDA 1M · RED ARMY PUSHING · $154.17 → $154.46 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 18, 9:51:48 AM NYC</div><div class="sscall r">NVDA 3M · RED ARMY PUSHING · $154.17 → $154.46 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 18, 9:51:33 AM NYC</div><div class="sscall n">NVDA DAY · DAY BOTTOM — THIRD ENTRY LONG — HIT · $154.17 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 18, 9:50:30 AM NYC</div><div class="sscall r">NVDA 1M · RED ARMY SLOWING · $154.26 → $158.84 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 18, 9:50:30 AM NYC</div><div class="sscall r">NVDA 3M · RED ARMY PUSHING · $154.26 → $158.84 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>1H Reader</b> — Nov 18, 9:50:30 AM NYC</div><div class="sscall r">NVDA 1H · RED ARMY PUSHING · $154.26 → $159.81 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>4H Reader</b> — Nov 18, 9:50:30 AM NYC</div><div class="sscall g">NVDA 4H · GREEN ARMY SLOWING · $154.26 → $159.81 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>6H Reader</b> — Nov 18, 9:50:30 AM NYC</div><div class="sscall r">NVDA 6H · RED ARMY SLOWING · $154.26 → $159.81 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 18, 9:50:30 AM NYC</div><div class="sscall g">NVDA DAY · GREEN ARMY SLOWING · $154.26 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 18, 2:15:42 AM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY SHOWING SIGNS OF SLOWING · $155.46 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 18, 2:15:42 AM NYC</div><div class="sscall g">NVDA 3M · GREEN ARMY HOLDING · $155.46 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 18, 2:15:42 AM NYC</div><div class="sscall r">NVDA DAY · RED ARMY SLOWING · $155.46 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 4:00:07 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY SHOWING SIGNS OF SLOWING · $155.39 → $155.46 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 17, 4:00:07 PM NYC</div><div class="sscall g">NVDA 3M · GREEN ARMY SHOWING SIGNS OF SLOWING · $155.39 → $155.46 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:59:42 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING — BIG MOVE · $155.14 → $155.39 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:59:04 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING · $155.10 → $155.14 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:58:27 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING — BIG MOVE · $154.93 → $155.10 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:57:50 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING — BIG MOVE · $154.52 → $154.93 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:57:15 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING · $154.30 → $154.52 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 17, 3:57:15 PM NYC</div><div class="sscall g">NVDA 3M · GREEN ARMY PUSHING · $154.30 → $155.39 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:56:39 PM NYC</div><div class="sscall r">NVDA 1M · RED ARMY SLOWING · $153.91 → $154.30 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:56:02 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING — BIG MOVE · $154.27 → $153.91 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:55:26 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING — BIG MOVE · $154.35 → $154.27 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:54:50 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING — BIG MOVE · $154.01 → $154.35 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:54:13 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING · $153.89 → $154.01 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 17, 3:54:13 PM NYC</div><div class="sscall g">NVDA 3M · GREEN ARMY PUSHING · $153.89 → $154.30 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:58:40 AM NYC</div><div class="sscall r">COIN 1M · RED ARMY SHOWING SIGNS OF SLOWING · $113.23 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:58:40 AM NYC</div><div class="sscall r">COIN 3M · RED ARMY SHOWING SIGNS OF SLOWING · $113.23 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:58:40 AM NYC</div><div class="sscall r">COIN WEEK · RED ARMY SLOWING · $113.23 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:58:40 AM NYC</div><div class="sscall r">COIN MONTH · RED ARMY SLOWING · $113.23 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 19, 9:58:29 AM NYC</div><div class="sscall n">COIN DAY · DAY BOTTOM — THIRD ENTRY LONG — HIT · $113.23 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:58:38 AM NYC</div><div class="sscall g">PLTR 1M · GREEN ARMY PUSHING · $164.92 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:58:38 AM NYC</div><div class="sscall r">PLTR 3M · RED ARMY SHOWING SIGNS OF SLOWING · $164.92 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:58:38 AM NYC</div><div class="sscall r">PLTR WEEK · RED ARMY SLOWING · $164.92 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:58:38 AM NYC</div><div class="sscall r">PLTR MONTH · RED ARMY SLOWING · $164.92 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:58:17 AM NYC</div><div class="sscall g">AAPL 1M · GREEN ARMY SLOWING · $348.60 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:58:17 AM NYC</div><div class="sscall r">AAPL DAY · RED ARMY PUSHING · $348.60 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:58:17 AM NYC</div><div class="sscall g">AAPL WEEK · GREEN ARMY SLOWING · $348.60 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:58:17 AM NYC</div><div class="sscall g">AAPL MONTH · GREEN ARMY SHOWING SIGNS OF SLOWING · $348.60 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:58:16 AM NYC</div><div class="sscall r">META 1M · RED ARMY PUSHING · $625.46 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:58:16 AM NYC</div><div class="sscall r">META 3M · RED ARMY HOLDING · $625.46 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:58:16 AM NYC</div><div class="sscall g">META DAY · GREEN ARMY SLOWING · $625.46 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:58:16 AM NYC</div><div class="sscall r">META WEEK · RED ARMY PUSHING · $625.46 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:58:16 AM NYC</div><div class="sscall r">META MONTH · RED ARMY SLOWING · $625.46 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:45:18 AM NYC</div><div class="sscall g">AAPL 1M · GREEN ARMY SHOWING SIGNS OF SLOWING · $349.52 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:45:18 AM NYC</div><div class="sscall r">AAPL 3M · RED ARMY SLOWING · $349.52 → $349.56 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>1H Reader</b> — Nov 19, 9:45:18 AM NYC</div><div class="sscall r">AAPL 1H · RED ARMY SLOWING · $349.52 → $353.80 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>4H Reader</b> — Nov 19, 9:45:18 AM NYC</div><div class="sscall g">AAPL 4H · GREEN ARMY SLOWING · $349.52 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>6H Reader</b> — Nov 19, 9:45:18 AM NYC</div><div class="sscall g">AAPL 6H · GREEN ARMY SLOWING · $349.52 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:45:18 AM NYC</div><div class="sscall r">AAPL DAY · RED ARMY PUSHING · $349.52 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:45:18 AM NYC</div><div class="sscall g">AAPL WEEK · GREEN ARMY SLOWING · $349.52 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:45:18 AM NYC</div><div class="sscall g">AAPL MONTH · GREEN ARMY SHOWING SIGNS OF SLOWING · $349.52 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 19, 9:44:59 AM NYC</div><div class="sscall n">AAPL WEEK · WEEK BOTTOM — SECOND ENTRY LONG — HIT · $349.52 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 19, 9:44:59 AM NYC</div><div class="sscall n">AAPL DAY · DAY BOTTOM — THIRD ENTRY LONG — HIT · $349.52 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:45:16 AM NYC</div><div class="sscall g">COIN 1M · GREEN ARMY PUSHING · $115.21 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:45:16 AM NYC</div><div class="sscall g">COIN 3M · GREEN ARMY PUSHING · $115.21 → $114.97 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>1H Reader</b> — Nov 19, 9:45:16 AM NYC</div><div class="sscall g">COIN 1H · GREEN ARMY SLOWING · $115.21 → $114.30 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>4H Reader</b> — Nov 19, 9:45:16 AM NYC</div><div class="sscall g">COIN 4H · GREEN ARMY SLOWING · $115.21 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>6H Reader</b> — Nov 19, 9:45:16 AM NYC</div><div class="sscall g">COIN 6H · GREEN ARMY SLOWING · $115.21 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:45:16 AM NYC</div><div class="sscall r">COIN DAY · RED ARMY SLOWING · $115.21 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:45:16 AM NYC</div><div class="sscall r">COIN WEEK · RED ARMY PUSHING · $115.21 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:45:16 AM NYC</div><div class="sscall r">COIN MONTH · RED ARMY SLOWING · $115.21 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 19, 9:44:58 AM NYC</div><div class="sscall n">COIN DAY · DAY TOP — THIRD ENTRY SHORT — HIT · $115.21 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:45:13 AM NYC</div><div class="sscall r">PLTR 1M · RED ARMY SLOWING · $166.29 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:45:13 AM NYC</div><div class="sscall g">PLTR 3M · GREEN ARMY SLOWING · $166.29 → $165.22 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>1H Reader</b> — Nov 19, 9:45:13 AM NYC</div><div class="sscall g">PLTR 1H · GREEN ARMY SLOWING · $166.29 → $160.29 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>4H Reader</b> — Nov 19, 9:45:13 AM NYC</div><div class="sscall g">PLTR 4H · GREEN ARMY SLOWING · $166.29 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>6H Reader</b> — Nov 19, 9:45:13 AM NYC</div><div class="sscall g">PLTR 6H · GREEN ARMY SLOWING · $166.29 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:45:13 AM NYC</div><div class="sscall g">PLTR DAY · GREEN ARMY SHOWING SIGNS OF SLOWING · $166.29 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:45:13 AM NYC</div><div class="sscall r">PLTR WEEK · RED ARMY SLOWING · $166.29 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:45:13 AM NYC</div><div class="sscall r">PLTR MONTH · RED ARMY SLOWING · $166.29 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:44:42 AM NYC</div><div class="sscall g">GOOGL 1M · GREEN ARMY PUSHING · $292.05 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:44:42 AM NYC</div><div class="sscall g">GOOGL 3M · GREEN ARMY SHOWING SIGNS OF SLOWING · $292.05 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>1H Reader</b> — Nov 19, 9:44:42 AM NYC</div><div class="sscall g">GOOGL 1H · GREEN ARMY SLOWING · $292.05 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>4H Reader</b> — Nov 19, 9:44:42 AM NYC</div><div class="sscall g">GOOGL 4H · GREEN ARMY PUSHING — BIG MOVE · $292.05 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>6H Reader</b> — Nov 19, 9:44:42 AM NYC</div><div class="sscall g">GOOGL 6H · GREEN ARMY PUSHING — BIG MOVE · $292.05 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:44:42 AM NYC</div><div class="sscall g">GOOGL DAY · GREEN ARMY PUSHING · $292.05 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:44:42 AM NYC</div><div class="sscall r">GOOGL WEEK · RED ARMY PUSHING · $292.05 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:44:42 AM NYC</div><div class="sscall r">GOOGL MONTH · RED ARMY PUSHING — BIG MOVE · $292.05 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:44:39 AM NYC</div><div class="sscall g">MSTR 1M · GREEN ARMY SLOWING · $93.26 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:44:39 AM NYC</div><div class="sscall g">MSTR 3M · GREEN ARMY PUSHING · $93.26 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>1H Reader</b> — Nov 19, 9:44:39 AM NYC</div><div class="sscall g">MSTR 1H · GREEN ARMY SLOWING · $93.26 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>4H Reader</b> — Nov 19, 9:44:39 AM NYC</div><div class="sscall g">MSTR 4H · GREEN ARMY SHOWING SIGNS OF SLOWING · $93.26 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>6H Reader</b> — Nov 19, 9:44:39 AM NYC</div><div class="sscall g">MSTR 6H · GREEN ARMY HOLDING · $93.26 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:44:39 AM NYC</div><div class="sscall r">MSTR DAY · RED ARMY SLOWING · $93.26 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:44:39 AM NYC</div><div class="sscall r">MSTR WEEK · RED ARMY PUSHING — BIG MOVE · $93.26 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:44:39 AM NYC</div><div class="sscall r">MSTR MONTH · RED ARMY PUSHING · $93.26 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:44:38 AM NYC</div><div class="sscall g">META 1M · GREEN ARMY SHOWING SIGNS OF SLOWING · $625.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:44:38 AM NYC</div><div class="sscall g">META 3M · GREEN ARMY SHOWING SIGNS OF SLOWING · $625.81 → $626.57 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>1H Reader</b> — Nov 19, 9:44:38 AM NYC</div><div class="sscall g">META 1H · GREEN ARMY SLOWING · $625.81 → $625.00 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>4H Reader</b> — Nov 19, 9:44:38 AM NYC</div><div class="sscall g">META 4H · GREEN ARMY SLOWING · $625.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>6H Reader</b> — Nov 19, 9:44:38 AM NYC</div><div class="sscall g">META 6H · GREEN ARMY SHOWING SIGNS OF SLOWING · $625.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:44:38 AM NYC</div><div class="sscall g">META DAY · GREEN ARMY SLOWING · $625.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:44:38 AM NYC</div><div class="sscall r">META WEEK · RED ARMY PUSHING · $625.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:44:38 AM NYC</div><div class="sscall r">META MONTH · RED ARMY SLOWING · $625.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 19, 9:44:22 AM NYC</div><div class="sscall n">META 6H · 6H BOTTOM — FOURTH ENTRY LONG — HIT · $625.81 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 19, 9:44:22 AM NYC</div><div class="sscall n">META 6H · 6H TOP — FOURTH ENTRY SHORT — HIT · $625.81 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:44:35 AM NYC</div><div class="sscall g">TSLA 1M · GREEN ARMY SLOWING · $390.53 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:44:35 AM NYC</div><div class="sscall g">TSLA 3M · GREEN ARMY SHOWING SIGNS OF SLOWING · $390.53 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>1H Reader</b> — Nov 19, 9:44:35 AM NYC</div><div class="sscall g">TSLA 1H · GREEN ARMY SHOWING SIGNS OF SLOWING · $390.53 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>4H Reader</b> — Nov 19, 9:44:35 AM NYC</div><div class="sscall g">TSLA 4H · GREEN ARMY PUSHING — BIG MOVE · $390.53 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>6H Reader</b> — Nov 19, 9:44:35 AM NYC</div><div class="sscall g">TSLA 6H · GREEN ARMY PUSHING — BIG MOVE · $390.53 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:44:35 AM NYC</div><div class="sscall g">TSLA DAY · GREEN ARMY PUSHING · $390.53 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>WEEK Reader</b> — Nov 19, 9:44:35 AM NYC</div><div class="sscall g">TSLA WEEK · GREEN ARMY PUSHING · $390.53 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>MONTH Reader</b> — Nov 19, 9:44:35 AM NYC</div><div class="sscall g">TSLA MONTH · GREEN ARMY SHOWING SIGNS OF SLOWING · $390.53 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 19, 9:44:22 AM NYC</div><div class="sscall n">TSLA 6H · 6H BOTTOM — FOURTH ENTRY LONG — HIT · $390.53 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 19, 9:44:14 AM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING — BIG MOVE · $157.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 19, 9:44:14 AM NYC</div><div class="sscall g">NVDA 3M · GREEN ARMY SHOWING SIGNS OF SLOWING · $157.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>1H Reader</b> — Nov 19, 9:44:14 AM NYC</div><div class="sscall g">NVDA 1H · GREEN ARMY SLOWING · $157.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>4H Reader</b> — Nov 19, 9:44:14 AM NYC</div><div class="sscall g">NVDA 4H · GREEN ARMY SLOWING · $157.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>6H Reader</b> — Nov 19, 9:44:14 AM NYC</div><div class="sscall g">NVDA 6H · GREEN ARMY SLOWING · $157.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 19, 9:44:14 AM NYC</div><div class="sscall r">NVDA DAY · RED ARMY SLOWING · $157.81 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 19, 9:44:02 AM NYC</div><div class="sscall n">NVDA DAY · DAY TOP — THIRD ENTRY SHORT — HIT · $157.81 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 18, 3:26:39 PM NYC</div><div class="sscall r">NVDA 1M · RED ARMY SHOWING SIGNS OF SLOWING · $150.69 → $150.70 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 18, 3:26:39 PM NYC</div><div class="sscall r">NVDA 3M · RED ARMY SLOWING · $150.69 → $150.75 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 18, 3:26:39 PM NYC</div><div class="sscall r">NVDA DAY · RED ARMY SLOWING · $150.69 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 18, 3:26:25 PM NYC</div><div class="sscall n">NVDA WEEK · WEEK BOTTOM — SECOND ENTRY LONG — HIT · $150.69 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 18, 12:33:51 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY SHOWING SIGNS OF SLOWING · $153.17 → $152.57 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 18, 12:33:51 PM NYC</div><div class="sscall g">NVDA 3M · GREEN ARMY SHOWING SIGNS OF SLOWING · $153.17 → $152.90 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 18, 12:33:51 PM NYC</div><div class="sscall r">NVDA DAY · RED ARMY SLOWING · $153.17 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 18, 9:51:48 AM NYC</div><div class="sscall r">NVDA 1M · RED ARMY PUSHING · $154.17 → $154.46 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 18, 9:51:48 AM NYC</div><div class="sscall r">NVDA 3M · RED ARMY PUSHING · $154.17 → $154.46 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>Nova</b> — Nov 18, 9:51:33 AM NYC</div><div class="sscall n">NVDA DAY · DAY BOTTOM — THIRD ENTRY LONG — HIT · $154.17 · RECORDED</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 18, 9:50:30 AM NYC</div><div class="sscall r">NVDA 1M · RED ARMY SLOWING · $154.26 → $158.84 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 18, 9:50:30 AM NYC</div><div class="sscall r">NVDA 3M · RED ARMY PUSHING · $154.26 → $158.84 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>1H Reader</b> — Nov 18, 9:50:30 AM NYC</div><div class="sscall r">NVDA 1H · RED ARMY PUSHING · $154.26 → $159.81 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>4H Reader</b> — Nov 18, 9:50:30 AM NYC</div><div class="sscall g">NVDA 4H · GREEN ARMY SLOWING · $154.26 → $159.81 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>6H Reader</b> — Nov 18, 9:50:30 AM NYC</div><div class="sscall r">NVDA 6H · RED ARMY SLOWING · $154.26 → $159.81 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 18, 9:50:30 AM NYC</div><div class="sscall g">NVDA DAY · GREEN ARMY SLOWING · $154.26 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 18, 2:15:42 AM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY SHOWING SIGNS OF SLOWING · $155.46 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 18, 2:15:42 AM NYC</div><div class="sscall g">NVDA 3M · GREEN ARMY HOLDING · $155.46 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>DAY Reader</b> — Nov 18, 2:15:42 AM NYC</div><div class="sscall r">NVDA DAY · RED ARMY SLOWING · $155.46 · OPEN</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 4:00:07 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY SHOWING SIGNS OF SLOWING · $155.39 → $155.46 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 17, 4:00:07 PM NYC</div><div class="sscall g">NVDA 3M · GREEN ARMY SHOWING SIGNS OF SLOWING · $155.39 → $155.46 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:59:42 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING — BIG MOVE · $155.14 → $155.39 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:59:04 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING · $155.10 → $155.14 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:58:27 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING — BIG MOVE · $154.93 → $155.10 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:57:50 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING — BIG MOVE · $154.52 → $154.93 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:57:15 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING · $154.30 → $154.52 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 17, 3:57:15 PM NYC</div><div class="sscall g">NVDA 3M · GREEN ARMY PUSHING · $154.30 → $155.39 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:56:39 PM NYC</div><div class="sscall r">NVDA 1M · RED ARMY SLOWING · $153.91 → $154.30 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:56:02 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING — BIG MOVE · $154.27 → $153.91 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:55:26 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING — BIG MOVE · $154.35 → $154.27 · MISS</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:54:50 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING — BIG MOVE · $154.01 → $154.35 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Mina</b> — Nov 17, 3:54:13 PM NYC</div><div class="sscall g">NVDA 1M · GREEN ARMY PUSHING · $153.89 → $154.01 · CORRECT</div></div>
+        <div class="ssrow"><div class="sswho"><b>Sierra</b> — Nov 17, 3:54:13 PM NYC</div><div class="sscall g">NVDA 3M · GREEN ARMY PUSHING · $153.89 → $154.30 · CORRECT</div></div>
+      </div>
+    </div>
+    <div class="rows" id="rd-rows" style="display:none"></div>
+    <script>
+    (function(){
+      var track=document.getElementById("stock-scroll-track");
+      if(!track) return;
+      var off=0,last=0,gen=0,SPEED=45;
+      function frame(ts,g){
+        if(g!==gen) return;
+        if(last){ off+=(ts-last)/1000*SPEED; var half=track.scrollHeight/2; if(half>0){ if(off>=half) off-=half; track.style.transform="translateY("+(-off)+"px)"; } }
+        last=ts; requestAnimationFrame(function(t){ frame(t,g); });
+      }
+      requestAnimationFrame(function(t){ frame(t,0); });
+      setInterval(function(){ if(performance.now()-last>2500){ gen++; last=0; var g=gen; requestAnimationFrame(function(t){ frame(t,g); }); } },3000);
+    })();
+    </script>
   </section>
 
   <footer>MASTER STOCK BOARD · NEW YORK TIME<br>
