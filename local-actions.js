@@ -609,10 +609,25 @@
           })
           .catch(function () {});
       });
-    var p4 = cached("yahoo:1wk:" + ticker, function () { return yahooBars(ticker, "1wk", "5y"); })
+    var p4 = cached("yahoo:1wk:" + ticker, function () {
+        // Open-web mode (Nov 21, 2026 feed fix): the 5y weekly payload
+        // is one of the two fat calls that choke the serial relay
+        // queue — stand down; the weekly set derives from the daily
+        // bars in the assembly below, the board's own derivation,
+        // exactly as when a raw set comes back short. Discord mode
+        // (direct door) is unchanged.
+        if (!IN_DISCORD) return Promise.resolve([]);
+        return yahooBars(ticker, "1wk", "5y");
+      })
       .then(function (bars) { weeklyRaw = bars; })
       .catch(function () {});
-    var p5 = cached("yahoo:1mo:" + ticker, function () { return yahooBars(ticker, "1mo", "10y"); })
+    var p5 = cached("yahoo:1mo:" + ticker, function () {
+        // Open-web mode (Nov 21, 2026 feed fix): same stand-down for
+        // the 10y monthly payload — the monthly set derives from the
+        // daily bars below. Discord mode is unchanged.
+        if (!IN_DISCORD) return Promise.resolve([]);
+        return yahooBars(ticker, "1mo", "10y");
+      })
       .then(function (bars) { monthlyRaw = bars; })
       .catch(function () {});
 
@@ -1206,10 +1221,22 @@
   }
   function runBoardBuild(ticker) {
     if (boardInFlight[ticker]) return boardInFlight[ticker];
-    var p = buildBoard(ticker).then(function (board) {
-      if (!board.ok || board.reads.every(function (r) { return r.held; })) {
-        throw new Error("Feed returned no reads.");
-      }
+    var attempt = function () {
+      return buildBoard(ticker).then(function (board) {
+        if (!board.ok || board.reads.every(function (r) { return r.held; })) {
+          throw new Error("Feed returned no reads.");
+        }
+        return board;
+      });
+    };
+    // One second pass (Nov 21, 2026 feed fix): the open-web relay
+    // door flickers in minutes-long stretches, and a single dead
+    // pass starved the last stock in the one-at-a-time queue —
+    // Apple — while its saved board did not yet stand. Wait out
+    // the flicker and build once more before the fallback serves.
+    var p = attempt().catch(function () {
+      return new Promise(function (res) { setTimeout(res, 15000); }).then(attempt);
+    }).then(function (board) {
       lsSet(LS_SNAP + ticker, { board: board, at: Date.now() });
       try {
         recordProof(board);
