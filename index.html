@@ -591,6 +591,13 @@ h2{line-height:22px;}
       <div class="orow"><span class="olabel">PORTIA — THE FLOOR'S READ</span><span class="ovalue" id="portia-line">—</span></div>
       <div class="orow"><span class="olabel">MARKET</span><span class="ovalue" id="market-state">—</span></div>
     </div>
+    <div class="subhead">THE MARKET BELL</div>
+    <div class="rows">
+      <div class="orow"><span class="olabel">MARKET STATE</span><span class="ovalue" id="bell-state-sheity">—</span></div>
+      <div class="orow"><span class="olabel">OPEN BELL</span><span class="ovalue"><b>9:30 AM NYC</b> — rings with sound at the open</span></div>
+      <div class="orow"><span class="olabel">CLOSE BELL</span><span class="ovalue"><b>4:00 PM NYC</b> — rings with sound at the close</span></div>
+      <div class="orow"><span class="olabel">TEST RING</span><span class="ovalue"><span class="offstate">OFF</span> — no test ring on this board</span></div>
+    </div>
     <div class="vwin" id="viewer-windows">
       <div class="vwin-title">Viewer windows — who is watching the boards</div>
       <div class="vwin-grid">
@@ -1854,6 +1861,8 @@ function paintSelected(b){
   ms.textContent = (b.marketLabel || "—") + (b.asOfEt ? " · AS OF " + b.asOfEt : "");
   const bs = $id("bell-state");
   if (bs) bs.textContent = (b.marketLabel || "—") + (b.asOfEt ? " · AS OF " + b.asOfEt : "");
+  const bss = $id("bell-state-sheity");
+  if (bss) bss.textContent = (b.marketLabel || "—") + (b.asOfEt ? " · AS OF " + b.asOfEt : "");
   $id("fp-title").textContent = b.ticker + " · " + (b.company || "") + " — " + fmt$(b.price);
   const rows = $id("fp-rows");
   rows.innerHTML = "";
